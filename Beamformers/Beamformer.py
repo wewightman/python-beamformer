@@ -1,26 +1,26 @@
 
 import numpy as np
 class Beamformer:
-    
+    """Class object defining a beamformer. Needs the following parameters defined...
+
+    Parameters:
+    ----
+    Nt: number of time samples per RF line (int)
+    dt: sampling period of channel data [s]
+    tstart: start time of rf line [s]
+    usf: upsample factor (int) newsamples/old
+    nele: number of elements in transducer
+    dele: element pitch [m]
+    Nlat: number of lateral, reconstructed pixels (int)
+    dlat: lateral spacing of pixels [m]
+    Nax: number of axial pixels (int)
+    dax: spacing between axial pixels [m]
+    ulc: spatial location of upper left corner [m, m]
+    apod: apodization function (default None)
+    fnum: fnumber used in recon (default None)
+    """
     def __init__(self):
-        """Initialize the beamformer with needed parameters
-        
-        Parameters:
-        ----
-        Nt: number of time samples per RF line (int)
-        dt: sampling period of channel data [s]
-        tstart: start time of rf line [s]
-        usf: upsample factor (int) newsamples/old
-        nele: number of elements in transducer
-        dele: element pitch [m]
-        Nlat: number of lateral, reconstructed pixels (int)
-        dlat: lateral spacing of pixels [m]
-        Nax: number of axial pixels (int)
-        dax: spacing between axial pixels [m]
-        ulc: spatial location of upper left corner [m, m]
-        apod: apodization function (default None)
-        fnum: fnumber used in recon (default None)
-        """
+        """Initialize the beamformer with needed parameters"""
         self.Nt = None
         self.dt = None
         self.tstart = None
@@ -35,6 +35,10 @@ class Beamformer:
         self.apod = None
         self.fnum = None
 
+    def verifyparams(self):
+        """Verify parameters. Should be called after all required feilds are filled"""
+        pass
+
     def gentabs(self):
         # Verify this beamformer has been instantiated properly
         print(getattr(self,'Nt'))
@@ -45,6 +49,12 @@ class Beamformer:
         self.poslat = np.linsapce(self.ulc[1], self.ulc[1] + self.Nlat*self.dlat, self.Nlat)
         self.t = self.tstart + self.dt * np.arange(self.Nt*self.usf + 1) / self.usf # one additional data point to set to zero
 
+    def __str__(self):
+        return "ooooooooops"
+
 oop = Beamformer()
 
-oop.gentabs()
+print(oop.Nt)
+oop.Nt = int(3)
+print(oop.Nt)
+print(oop)
