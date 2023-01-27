@@ -34,6 +34,8 @@ class Beamformer:
         self.ulc = None
         self.apod = None
         self.fnum = None
+        self.txparams = None
+        self.c = None
 
     def verifyparams(self):
         """Verify parameters. Should be called after all required feilds are filled"""
@@ -41,20 +43,42 @@ class Beamformer:
 
     def gentabs(self):
         # Verify this beamformer has been instantiated properly
-        print(getattr(self,'Nt'))
+        self.verifyparams()
 
         # Calculate the lateral position of elements, and the axial/lateral coordinates of recon pixels
         self.posele = np.linspace(-self.dele*(self.nele-1)/2, self.dele*(self.nele-1)/2, self.nele)
         self.posax = np.linsapce(self.ulc[0], self.ulc[0] + self.Nax*self.dax, self.Nax)
         self.poslat = np.linsapce(self.ulc[1], self.ulc[1] + self.Nlat*self.dlat, self.Nlat)
         self.t = self.tstart + self.dt * np.arange(self.Nt*self.usf + 1) / self.usf # one additional data point to set to zero
+        
+        # Call the relevant helper function based on the transmit mode being used
+        if self.txparams['mode'] == 'planewave':
+            try:
+                from Beamformers.Beamformer import __pwcalc__
+                __pwcalc__(self)
+            except Exception as e:
+                raise Exception("An error occured when using 'planewave' mode beamformer") from e
+        elif self.txparams['mode'] == 'alines':
+            try:
+                from Beamformers.Beamformer import __alinecalc__
+                __alinecalc__(self)
+            except Exception as e:
+                raise Exception("An error occured when using 'planewave' mode beamformer") from e
+        else:
+            raise Exception("Unknown beamforming mode")
+
+    def genmasks(self):
+        pass
+
 
     def __str__(self):
         return "ooooooooops"
 
-oop = Beamformer()
+def __pwcalc__(self):
+    txparams = self.tx
+    reqkeys = ['alpha']
 
-print(oop.Nt)
-oop.Nt = int(3)
-print(oop.Nt)
-print(oop)
+    pass
+
+def __alinecalc__(self):
+    pass
