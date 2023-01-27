@@ -74,8 +74,8 @@ class Beamformer:
     def __str__(self):
         return "ooooooooops"
 
-def __pwcalc__(self):
-    txparams = self.tx
+def __pwcalc__(self : Beamformer):
+    txparams = self.txparams
     reqkeys = ['alpha']
 
     pass
