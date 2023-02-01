@@ -1,1 +1,1 @@
-from Beamformer import Beamformer
+from Beamformers.Beamformer import Beamformer

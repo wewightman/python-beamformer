@@ -74,10 +74,14 @@ class Beamformer:
     def __str__(self):
         return "ooooooooops"
 
-def __pwcalc__(self : Beamformer):
+def __pwverify__(self : Beamformer):
+    
     txparams = self.txparams
     reqkeys = ['alpha']
+    pass
 
+def __pwcalc__(self : Beamformer):
+    
     pass
 
 def __alinecalc__(self):
