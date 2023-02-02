@@ -1,1 +1,1 @@
-from bmfrm.Beamformer import Beamformer
+from bmfrm.bmfrm2d import bmfrm2d

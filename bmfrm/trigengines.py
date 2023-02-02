@@ -1,5 +1,5 @@
 import numpy as np
-from bmfrm import Beamformer
+from bmfrm import bmfrm2d
 
 def rxengine(c : float, ref : np.array, points : np.array):
     """Calculate the distance from a given refernce to each point in a feild
@@ -29,9 +29,8 @@ def rxengine(c : float, ref : np.array, points : np.array):
 
     # convert the distance to one way time in seconds
     tau_rx = dist / c
-    tau_rx = tau_rx.flatten()
 
-    return tau_rx
+    return tau_rx.flatten()
 
 def pwtxengine(c : float, tref : float, theta : float, phi : float, ref : np.array, points : np.array):
     """Calculate the time from t=0 to wave front intersection with each point
@@ -67,5 +66,5 @@ def pwtxengine(c : float, tref : float, theta : float, phi : float, ref : np.arr
 
     # convert the distance to the one way time of travel
     tau_tx = dist / c
-    
-    return tau_tx
+
+    return tau_tx.flatten()
