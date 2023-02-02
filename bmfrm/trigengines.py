@@ -16,23 +16,13 @@ def rxengine(bmfrm : Beamformer, ref : np.array, points : np.array):
     """
 
     #Validate input params
-    if (np.ndim(ref) < 1):
-        raise Exception("ref must be a vector of length 3")
-
-    if (np.ndim(ref) > 2):
-        raise Exception("ref must be a vector of length 3")
-
-    if (not np.prod(ref.shape) == 3):
-        raise Exception("ref must be a vector of length 3")
-        
-    if (not np.ndim(points) == 2) or (not points.shape[1] == 3):
-        raise Exception("points must be a matrix with dimensions N by 3")
+    if (np.ndim(ref) < 1): raise Exception("ref must be a vector of length 3")
+    if (np.ndim(ref) > 2): raise Exception("ref must be a vector of length 3")
+    if (not np.prod(ref.shape) == 3): raise Exception("ref must be a vector of length 3")
+    if (not np.ndim(points) == 2) or (not points.shape[1] == 3): raise Exception("points must be a matrix with dimensions N by 3")
 
     c = bmfrm.c                         # extract the speed of sound
-    print(c)
-
     ref = ref.reshape((1, 3))           # reformat the reference point for broadcasting
-
     points = points.reshape((-1, 3))    # reformat the spatial coordinates for broadcasting
 
     # calculate the physical distance between the reference and each point in the feild
@@ -40,7 +30,6 @@ def rxengine(bmfrm : Beamformer, ref : np.array, points : np.array):
 
     # convert the distance to one way time in seconds
     tau_rx = dist / c
-
     tau_rx = tau_rx.flatten()
 
     return tau_rx

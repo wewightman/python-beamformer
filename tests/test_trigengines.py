@@ -26,5 +26,5 @@ def test_rxengine_values():
 def test_rxengine_length():
     from bmfrm.trigengines import rxengine
     dist = rxengine(gen_bmfrm(), **gen_ref_n_points())
-    assert len(dist.shape) == 1 and dist.shape[0] == 4
+    assert np.ndim(dist) == 1 and dist.shape[0] == 4
 
