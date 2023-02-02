@@ -54,16 +54,16 @@ class Beamformer:
         # Call the relevant helper function based on the transmit mode being used
         if self.txparams['mode'] == 'planewave':
             try:
-                from Beamformers.Beamformer import __pwcalc__
+                from bmfrm.Beamformer import __pwcalc__
                 __pwcalc__(self)
             except Exception as e:
                 raise Exception("An error occured when using 'planewave' mode beamformer") from e
         elif self.txparams['mode'] == 'alines':
             try:
-                from Beamformers.Beamformer import __alinecalc__
+                from bmfrm.Beamformer import __alinecalc__
                 __alinecalc__(self)
             except Exception as e:
-                raise Exception("An error occured when using 'planewave' mode beamformer") from e
+                raise Exception("An error occured when using 'aline' mode beamformer") from e
         else:
             raise Exception("Unknown beamforming mode")
 
@@ -81,8 +81,13 @@ def __pwverify__(self : Beamformer):
     pass
 
 def __pwcalc__(self : Beamformer):
-    
+    pass
+
+def __alineverify__(self : Beamformer):
+    from bmfrm.__defaults__ import alinedefaults
+    print("Checking your mom")
     pass
 
 def __alinecalc__(self):
+
     pass
