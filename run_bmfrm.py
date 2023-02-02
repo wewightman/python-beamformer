@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import scipy.signal as sig
 import h5py as h5
 
-import bmfrm.Beamformer as Beamformer
+import bmfrm.bmfrm2d as bmfrm2d
 
 filepw = "C:\\Users\\14142\\OneDrive - Duke University\\Classes\\RIP\\Ultrasound\\unfocused_transmit1.mat"
 filefoc = "C:\\Users\\14142\\OneDrive - Duke University\\Classes\\RIP\\Ultrasound\\focused_transmit1.mat"
