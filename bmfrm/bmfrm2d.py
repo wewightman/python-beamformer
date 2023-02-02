@@ -35,7 +35,7 @@ class bmfrm2d:
         self.fnum = None
         self.txparams = None
         self.c = None
-        self.dtpulse = 0
+        self.dtpeak = 0
 
     def verifyparams(self):
         """Verify parameters. Should be called after all required feilds are filled"""
