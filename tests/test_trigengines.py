@@ -33,3 +33,12 @@ def test_pwtxengine_values():
     tau = pwtxengine(c, tref, theta, phi, **gen_ref_n_points())
     tau_known = np.array([1, 1, 1, 2])/c
     assert tau == pytest.approx(tau_known)
+
+def test_rxengine_length():
+    from bmfrm.trigengines import pwtxengine
+    c = 2
+    tref = 0.5
+    theta = 0
+    phi = 0
+    tau = pwtxengine(c, tref, theta, phi, **gen_ref_n_points())
+    assert np.ndim(tau) == 1 and tau.shape[0] == 4
