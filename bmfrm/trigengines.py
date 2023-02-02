@@ -15,7 +15,18 @@ def rxengine(bmfrm : Beamformer, ref : np.array, points : np.array):
     tau_rx: an N length time delay vector in seconds
     """
 
-    #TODO: Insert parameter validation step
+    #Validate input params
+    if (np.ndim(ref) < 1):
+        raise Exception("ref must be a vector of length 3")
+
+    if (np.ndim(ref) > 2):
+        raise Exception("ref must be a vector of length 3")
+
+    if (not np.prod(ref.shape) == 3):
+        raise Exception("ref must be a vector of length 3")
+        
+    if (not np.ndim(points) == 2) or (not points.shape[1] == 3):
+        raise Exception("points must be a matrix with dimensions N by 3")
 
     c = bmfrm.c                         # extract the speed of sound
     print(c)
