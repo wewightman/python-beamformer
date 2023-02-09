@@ -31,8 +31,8 @@ zmax = 60E-3;   # end depth of recon
 nz = np.round((zmax-zmin)/dz)   # number of samples
 usf = 5         # axial upsampling factor [newsamp/oldsamp]
 
-filepw = "C:\\Users\\14142\\OneDrive - Duke University\\Classes\\RIP\\Ultrasound\\unfocused_transmit1.mat"
-filefoc = "C:\\Users\\14142\\OneDrive - Duke University\\Classes\\RIP\\Ultrasound\\focused_transmit1.mat"
+filepw = "/datacommons/ultrasound/wew12/classes/unfocused_transmit1.mat"
+filefoc = "/datacommons/ultrasound/wew12/classes/focused_transmit1.mat"
 
 datapw = matload.loadmat(filepw)['rf']
 datapw = datapw.transpose(0, 2, 1)

@@ -79,7 +79,7 @@ def __pwcalctabs__(self : bmfrm2d):
      - the amount of time from t=0 ultil the peak envelope of the pulse
     """
     # import needed trig engines
-    from bmfrm.trigengines import rxengine, pwtxengine
+    from bmfrm.trigengines.trigengines import rxengine, pwtxengine
 
     # generate X, Y, and Z grids (Y is a grid of zeros)
     X, Y, Z = np.meshgrid(self.poslat, np.array([0]), self.posax, indexing='xy')

@@ -1,5 +1,4 @@
 import numpy as np
-from bmfrm import bmfrm2d
 
 def rxengine(c : float, ref : np.array, points : np.array):
     """Calculate the distance from a given refernce to each point in a feild
@@ -22,7 +21,6 @@ def rxengine(c : float, ref : np.array, points : np.array):
     if (not np.ndim(points) == 2) or (not points.shape[1] == 3): raise Exception("points must be a matrix with dimensions N by 3")
 
     ref = ref.reshape((1, 3))           # reformat the reference point for broadcasting
-    points = points.reshape((-1, 3))    # reformat the spatial coordinates for broadcasting
 
     # calculate the physical distance between the reference and each point in the feild
     dist = np.sqrt(np.sum((points - ref)**2, axis=1))
@@ -95,7 +93,7 @@ def foctxengine(c : float, tref : float, focal : np.array, ref : np.array, point
     if (not np.ndim(points) == 2) or (not points.shape[1] == 3): raise Exception("points must be a matrix with dimensions N by 3")
     
     # calculate location of field points relative to time shifted (delay tabs in z) reference
-    points = points - ref.reshape((1, 3)) + np.array([[0, 0, c*tref]])         
+    points = points - ref.reshape((1, 3)) - np.array([[0, 0, c*tref]])         
 
     # calculate the normal vector to the plane wave
     norm = np.array([[0, 0, 1]])
