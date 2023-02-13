@@ -56,7 +56,7 @@ def pwtxengine(c : float, tref : float, theta : float, phi : float, ref : np.arr
     points = points - ref.reshape((1, 3)) + np.array([[0, 0, c*tref]])         
 
     # calculate the normal vector to the plane wave
-    norm = np.array([[np.sin(theta), np.sin(phi), np.cos(theta) + np.cos(phi)]])
+    norm = np.array([[np.sin(theta), np.sin(phi), np.cos(theta) * np.cos(phi)]])
     norm = norm / np.sqrt(np.sum(norm**2, axis = 1))
 
     # calculate the inner product of the normal vector and the field points to find distance to incidence
