@@ -63,7 +63,7 @@ def pwtxengine(c : float, tref : float, theta : float, phi : float, ref : np.arr
     dist = np.sum(points * norm, axis = 1)
 
     # convert the distance to the one way time of travel
-    tau_tx = dist / c
+    tau_tx = dist / c - tref
 
     return tau_tx.flatten()
 
